@@ -1,17 +1,12 @@
 from __future__ import division
-from future.utils import raise_from
 
 import math
 import time
 from datetime import datetime
 from operator import itemgetter
 
-from pocket import (
-    Pocket,
-    PocketException,
-    PocketAutException
-)
-
+from future.utils import raise_from
+from pocket import Pocket, PocketAutException, PocketException
 from progress.spinner import Spinner
 
 from .config import Configs
@@ -85,6 +80,9 @@ class PocketApp:
 
     def search(self, search, state, tag, sort):
         try:
+            # search_state = self._configs.get('search_state')
+            # if search_state and not state:
+            #     state = search_state
             articles = self._pocket.retrieve(search=search,
                                              state=state,
                                              tag=tag,

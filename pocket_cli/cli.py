@@ -1,20 +1,17 @@
-from __future__ import absolute_import
-from __future__ import print_function
-
-from builtins import input
+from __future__ import absolute_import, print_function
 
 import random
 import subprocess
 import sys
-import six
 import webbrowser
+from builtins import input
 
 import click
+import six
 
 from .app import PocketApp
-from .exceptions import AppNotConfigured, AppException
+from .exceptions import AppException, AppNotConfigured
 from .utils import format_article
-
 
 pocket_app = PocketApp()
 
@@ -120,7 +117,7 @@ def list_articles(limit, order):
 @click.argument('search')
 @click.option('--state', '-s',
               type=click.Choice(['unread', 'archive', 'all']),
-              default='unread')
+              default='all')
 @click.option('--tag', '-t')
 @click.option('--sort', '-o',
               type=click.Choice(['newest', 'oldest', 'title', 'site']),
@@ -214,8 +211,8 @@ def output_articles(articles):
                                  stdin=subprocess.PIPE,
                                  stdout=sys.stdout)
         for article in articles:
-            if int(article['reading_time']) <= 0:
-                article['reading_time'] = 'Unknown'
+            # if int(article['reading_time']) <= 0:
+            #     article['reading_time'] = 'Unknown'
             content = format_article(article, line=True)
 
             if six.PY3:

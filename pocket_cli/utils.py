@@ -35,14 +35,15 @@ def format_article(article, header=None, footer=None, line=False):
     if header:
         content = '{}\n'.format(header)
     if line:
-        content += '{}\n'.format('=' * (get_terminal_size()[0]-1))
+        content += '{}\n'.format('-' * (get_terminal_size()[0]-1))
 
-    content += '{} - {}\nReading Time: {} Mins\nURL: {}\n'.format(
+    content += 'id\t:{}\ntitle\t:{}\nurl\t:{}\n'.format(
         article['id'],
         article['title'] if article['title'] else '(No Title)',
-        article['reading_time'],
         article['url']
     )
+    if int(article['reading_time']) > 0:
+        content += 'Time\t:{}\n'.format(article['reading_time'])
 
     if footer:
         content += footer
