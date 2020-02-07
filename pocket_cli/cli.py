@@ -207,7 +207,7 @@ def output_articles(articles):
         return
 
     try:
-        pager = subprocess.Popen(['less'],
+        pager = subprocess.Popen(['cat'],
                                  stdin=subprocess.PIPE,
                                  stdout=sys.stdout)
         for article in articles:
