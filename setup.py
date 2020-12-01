@@ -11,7 +11,8 @@ setup(
     description='A terminal application for Pocket',
     long_description=open('README.md').read(),
 
-    packages=find_packages(),
+    # packages=find_packages(),
+    packages=["pocket_cli"],
     include_package_data=True,
 
     install_requires=[
